@@ -13,7 +13,10 @@ var server = http.createServer(function(request, response) {
   var temperature = 20 + (Math.random() * 15);
   var message = new Message(JSON.stringify({
     temperature: temperature,
-    humidity: 60 + (Math.random() * 20)
+    humidity: 60 + (Math.random() * 20),
+    
+    // Enhancement: Adding wind to the message
+    wind: 5 + (Math.random() * 10)
   }));
 
   message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false');
