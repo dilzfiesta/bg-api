@@ -10,7 +10,6 @@ var client = DeviceClient.fromConnectionString(connectionString, Mqtt);
 
 var server = http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
-  var temperature = 
   var message = new Message(JSON.stringify({
     
     // Body temperature of the patient
@@ -24,7 +23,7 @@ var server = http.createServer(function(request, response) {
     
   }));
 
-  message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false');
+  //message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false');
 
   // Send the message.
   client.sendEvent(message, function (err) {
