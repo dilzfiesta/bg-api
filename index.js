@@ -10,13 +10,18 @@ var client = DeviceClient.fromConnectionString(connectionString, Mqtt);
 
 var server = http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
-  var temperature = 20 + (Math.random() * 15);
+  var temperature = 
   var message = new Message(JSON.stringify({
-    temperature: temperature,
-    humidity: 60 + (Math.random() * 20),
     
-    // Enhancement: Adding wind to the message
-    wind: 5 + (Math.random() * 10)
+    // Body temperature of the patient
+    temperature: Math.round(20 + (Math.random() * 15)),
+    
+    // Surrounding humidity
+    humidity: Math.round(30 + (Math.random() * 20)),
+    
+    // Enhancement: Adding heart rate in beats per min. of the patient
+    heartrate: Math.round(40 + (Math.random() * 10))
+    
   }));
 
   message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false');
